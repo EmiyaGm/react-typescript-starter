@@ -1,7 +1,9 @@
 import { DemoActions } from './demo.actions';
-import * as constants from './demo.types';
+import { ActionTypes } from './demo.types';
 
-type DemoState = constants.DemoState;
+export interface DemoState {
+  count: number;
+}
 
 const initState: DemoState = {
   count: 0
@@ -9,11 +11,11 @@ const initState: DemoState = {
 
 export function demoReducer(state: DemoState = initState, action: DemoActions): DemoState {
   switch (action.type) {
-    case constants.INCREMENT:
+    case ActionTypes.INCREMENT:
       return { ...state, count: state.count + 1 };
-    case constants.DECREMENT:
+    case ActionTypes.DECREMENT:
       return { ...state, count: state.count - 1 };
-    case constants.ADD:
+    case ActionTypes.ADD:
       return { ...state, count: state.count + action.payload };
     default:
       return state;

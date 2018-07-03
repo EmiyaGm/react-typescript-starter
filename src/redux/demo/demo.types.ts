@@ -1,12 +1,5 @@
-export interface DemoState {
-  count: number;
+export enum ActionTypes {
+  INCREMENT = 'INCREMENT',
+  DECREMENT = 'DECREMENT',
+  ADD = 'ADD'
 }
-
-export const INCREMENT = 'INCREMENT';
-export type INCREMENT = typeof INCREMENT;
-
-export const DECREMENT = 'DECREMENT';
-export type DECREMENT = typeof DECREMENT;
-
-export const ADD = 'ADD';
-export type ADD = typeof ADD;

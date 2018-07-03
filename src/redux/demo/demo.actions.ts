@@ -1,28 +1,28 @@
-import * as constants from './demo.types';
+import { ActionTypes } from './demo.types';
 
 export interface Increase {
-  type: constants.INCREMENT
+  type: ActionTypes.INCREMENT
 }
 
 export interface Decrease {
-  type: constants.DECREMENT
+  type: ActionTypes.DECREMENT
 }
 
 export interface Add {
-  type: constants.ADD,
+  type: ActionTypes.ADD,
   payload: number;
 }
 
 export type DemoActions = Increase | Decrease | Add;
 
 export function increase(): Increase {
-  return { type: constants.INCREMENT };
+  return { type: ActionTypes.INCREMENT };
 }
 
 export function decrease(): Decrease {
-  return { type: constants.DECREMENT };
+  return { type: ActionTypes.DECREMENT };
 }
 
 export function add(count: number): Add {
-  return { type: constants.ADD, payload: count };
+  return { type: ActionTypes.ADD, payload: count };
 }
