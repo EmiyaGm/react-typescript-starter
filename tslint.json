@@ -8,6 +8,6 @@
   },
   "rules": {
     "interface-name": false,
-    "no-namespace": false
+    "no-console": false
   }
 }

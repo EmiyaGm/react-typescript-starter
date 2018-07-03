@@ -13,7 +13,6 @@ export interface Add {
   payload: number;
 }
 
-export type DemoActions = Increase | Decrease | Add;
 
 export function increase(): Increase {
   return { type: ActionTypes.INCREMENT };
@@ -26,3 +25,5 @@ export function decrease(): Decrease {
 export function add(count: number): Add {
   return { type: ActionTypes.ADD, payload: count };
 }
+
+export type DemoActions = Increase | Decrease | Add;

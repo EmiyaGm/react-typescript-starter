@@ -1,7 +1,10 @@
 import { enviroment } from '../config';
 
-export async function configureStore() {
+import dev from './store.dev';
+import prod from './store.prod';
+
+export function configureStore() {
   return enviroment === 'development'
-    ? await import('./store.dev')
-    : await import('./store.prod');
+    ? dev
+    : prod;
 }
