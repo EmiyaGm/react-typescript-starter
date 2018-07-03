@@ -2,7 +2,7 @@ import { DemoActions } from './demo.actions';
 import { ActionTypes } from './demo.types';
 
 export interface DemoState {
-  count: number;
+  readonly count: number;
 }
 
 const initState: DemoState = {
