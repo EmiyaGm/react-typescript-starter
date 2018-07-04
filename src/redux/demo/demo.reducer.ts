@@ -1,5 +1,4 @@
-import { DemoActions } from './demo.actions';
-import { ActionTypes } from './demo.types';
+import { ActionTypes, DemoActions } from './demo.types';
 
 export interface DemoState {
   readonly count: number;

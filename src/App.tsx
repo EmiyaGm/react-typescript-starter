@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import './App.css';
 import logo from './logo.svg';
-import { add, decrease, DemoActions, increase } from './redux/demo/demo.actions';
+import { add, decrease, increase } from './redux/demo/demo.actions';
 import { DemoState } from './redux/demo/demo.reducer';
-
 
 interface Props {
   count: number;
@@ -14,15 +13,12 @@ interface Props {
   onAdd(count: number): void;
 }
 
-interface State {
-  inputCount: number
-}
+const initState = { count: 0 };
+type State = Readonly<typeof initState>;
 
 class App extends React.Component<Props, State> {
 
-  public state = {
-    inputCount: 0
-  };
+  public readonly state = initState;
 
   public add = () => {
     this.props.onAdd(3);
@@ -52,7 +48,7 @@ const mapStateToProps = ({ demo }: { demo: DemoState }) => ({
   count: demo.count
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<DemoActions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onIncrease() {
     dispatch(increase());
   },

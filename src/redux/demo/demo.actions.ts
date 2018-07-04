@@ -1,18 +1,4 @@
-import { ActionTypes } from './demo.types';
-
-export interface Increase {
-  type: ActionTypes.INCREMENT
-}
-
-export interface Decrease {
-  type: ActionTypes.DECREMENT
-}
-
-export interface Add {
-  type: ActionTypes.ADD,
-  payload: number;
-}
-
+import { ActionTypes, Add, Decrease, Increase } from './demo.types';
 
 export function increase(): Increase {
   return { type: ActionTypes.INCREMENT };
@@ -26,4 +12,7 @@ export function add(count: number): Add {
   return { type: ActionTypes.ADD, payload: count };
 }
 
-export type DemoActions = Increase | Decrease | Add;
+export type DemoActionCreators =
+  typeof increase |
+  typeof decrease |
+  typeof add;
