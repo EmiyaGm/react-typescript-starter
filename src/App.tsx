@@ -11,18 +11,16 @@ interface Props {
   onIncrease(): void;
   onDecrease(): void;
   onAdd(count: number): void;
+  onIncreaseAsync(): void;
 }
 
-const initState = { count: 0 };
-type State = Readonly<typeof initState>;
+interface State {
+  count: number;
+}
 
 class App extends React.Component<Props, State> {
 
-  public readonly state = initState;
-
-  public add = () => {
-    this.props.onAdd(3);
-  }
+  public readonly state = { count: 0 };
 
   public render() {
     const { count, onIncrease, onDecrease } = this.props;
@@ -39,8 +37,13 @@ class App extends React.Component<Props, State> {
         <button onClick={onIncrease}>+</button>
         <button onClick={onDecrease}>-</button>
         <button onClick={this.add}>3</button>
+        <button onClick={this.props.onIncreaseAsync}>async</button>
       </div>
     );
+  }
+
+  private add = () => {
+    this.props.onAdd(3);
   }
 }
 
@@ -58,6 +61,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   onAdd(count: number) {
     dispatch(add(count))
   },
+  onIncreaseAsync() {
+    dispatch({ type: 'INCREMENT_ASYNC' })
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

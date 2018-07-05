@@ -1,14 +1,14 @@
 import { ActionTypes, DemoActions } from './demo.types';
 
 export interface DemoState {
-  readonly count: number;
+  count: number;
 }
 
-const initState: DemoState = {
+const initState = {
   count: 0
 };
 
-export function demoReducer(state: DemoState = initState, action: DemoActions): DemoState {
+export function demo(state: DemoState = initState, action: DemoActions): DemoState {
   switch (action.type) {
     case ActionTypes.INCREMENT:
       return { ...state, count: state.count + 1 };

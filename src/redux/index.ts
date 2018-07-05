@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
-import { demoReducer } from './demo/demo.reducer';
+import { all } from 'redux-saga/effects';
+import { demo } from './demo/demo.reducer';
+import { demoRootSaga } from './demo/demo.sagas';
 
-export const rootReducer = combineReducers({
-  demo: demoReducer
-});
+export const rootReducer = combineReducers(
+  { demo }
+);
+
+export function* rootSaga(): IterableIterator<any> {
+  yield all([
+    demoRootSaga()
+  ]);
+}
