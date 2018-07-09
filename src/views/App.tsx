@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { add, decrease, increase } from '../models/demo/demo.actions';
+import { DemoState } from '../models/demo/demo.reducer';
 import './App.css';
 import logo from './logo.svg';
-import { add, decrease, increase } from './redux/demo/demo.actions';
-import { DemoState } from './redux/demo/demo.reducer';
 
 interface Props {
   count: number;
