@@ -4,7 +4,6 @@ import { Dispatch } from 'redux';
 import { add, decrease, increase } from '../models/demo/demo.actions';
 import { DemoState } from '../models/demo/demo.reducer';
 import './App.css';
-import logo from './logo.svg';
 
 interface Props {
   count: number;
@@ -27,7 +26,6 @@ class App extends React.Component<Props, State> {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
