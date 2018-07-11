@@ -5,13 +5,7 @@ import { add, decrease, increase } from '../models/demo/demo.actions';
 import { DemoState } from '../models/demo/demo.reducer';
 import './App.css';
 
-interface Props {
-  count: number;
-  onIncrease(): void;
-  onDecrease(): void;
-  onAdd(count: number): void;
-  onIncreaseAsync(): void;
-}
+interface Props extends ReturnType<typeof mapStateToProps>, ReturnType<typeof mapDispatchToProps> { }
 
 interface State {
   count: number;
