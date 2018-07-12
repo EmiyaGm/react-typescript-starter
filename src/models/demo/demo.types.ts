@@ -4,6 +4,7 @@ export enum ActionTypes {
   ADD = 'ADD',
 
   INCREMENT_ASYNC = 'INCREMENT_ASYNC',
+  ADD_ASYNC = 'ADD_ASYNC'
 }
 
 export interface Increase {

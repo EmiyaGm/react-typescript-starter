@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { add, decrease, increase } from '../models/demo/demo.actions';
-import { DemoState } from '../models/demo/demo.reducer';
+import { bindActionCreators, Dispatch } from 'redux';
+import { add, addAsync, decrease, increase, increaseAsync } from '../models/demo/demo.actions';
+import { GlobalState } from '../models/root';
 import './App.css';
 
 interface Props extends ReturnType<typeof mapStateToProps>, ReturnType<typeof mapDispatchToProps> { }
@@ -30,6 +30,7 @@ class App extends React.Component<Props, State> {
         <button onClick={onDecrease}>-</button>
         <button onClick={this.add}>3</button>
         <button onClick={this.props.onIncreaseAsync}>async</button>
+        <button onClick={this.props.onAddSync.bind(this, 3)}>add async</button>
       </div>
     );
   }
@@ -39,23 +40,16 @@ class App extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ demo }: { demo: DemoState }) => ({
-  count: demo.count
+const mapStateToProps = (state: GlobalState) => ({
+  count: state.demo.count
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onIncrease() {
-    dispatch(increase());
-  },
-  onDecrease() {
-    dispatch(decrease());
-  },
-  onAdd(count: number) {
-    dispatch(add(count))
-  },
-  onIncreaseAsync() {
-    dispatch({ type: 'INCREMENT_ASYNC' })
-  }
+  onAdd: bindActionCreators(add, dispatch),
+  onAddSync: bindActionCreators(addAsync, dispatch),
+  onDecrease: bindActionCreators(decrease, dispatch),
+  onIncrease: bindActionCreators(increase, dispatch),
+  onIncreaseAsync: bindActionCreators(increaseAsync, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

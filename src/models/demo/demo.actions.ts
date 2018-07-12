@@ -12,7 +12,10 @@ export function add(count: number): Add {
   return { type: ActionTypes.ADD, payload: count };
 }
 
-export type DemoActionCreators =
-  typeof increase |
-  typeof decrease |
-  typeof add;
+export function increaseAsync() {
+  return { type: ActionTypes.INCREMENT_ASYNC };
+}
+
+export function addAsync(count: number) {
+  return { type: ActionTypes.ADD_ASYNC, payload: count };
+}
