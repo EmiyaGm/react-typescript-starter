@@ -20,4 +20,4 @@ export interface Add {
   payload: number;
 }
 
-export type DemoActions = Increase | Decrease | Add;
+export type DemoAction = Increase | Decrease | Add;

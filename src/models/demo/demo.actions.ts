@@ -1,14 +1,14 @@
-import { ActionTypes, Add, Decrease, Increase } from './demo.types';
+import { ActionTypes } from './demo.types';
 
-export function increase(): Increase {
+export function increase() {
   return { type: ActionTypes.INCREMENT };
 }
 
-export function decrease(): Decrease {
+export function decrease() {
   return { type: ActionTypes.DECREMENT };
 }
 
-export function add(count: number): Add {
+export function add(count: number) {
   return { type: ActionTypes.ADD, payload: count };
 }
 

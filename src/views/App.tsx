@@ -30,12 +30,12 @@ class App extends React.Component<Props, State> {
   }
 
   private add = () => {
-    this.props.action.add(3)
+    this.props.action.add(3);
   }
 }
 
 const mapStateToProps = (state: GlobalState) => ({
-  count: state.demo.count
+  count: state.demo.count,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

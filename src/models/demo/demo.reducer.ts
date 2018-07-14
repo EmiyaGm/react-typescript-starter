@@ -1,15 +1,13 @@
 import { Reducer } from 'redux';
-import { ActionTypes, DemoActions } from './demo.types';
-
-export interface DemoState {
-  count: number;
-};
+import { ActionTypes, DemoAction } from './demo.types';
 
 const initState = {
   count: 0
 };
 
-export const demo: Reducer<Readonly<DemoState>, DemoActions> = (state = initState, action) => {
+export type DemoState = Readonly<typeof initState>;
+
+export const demoReducer: Reducer<DemoState, DemoAction> = (state = initState, action) => {
   switch (action.type) {
     case ActionTypes.INCREMENT:
       return { ...state, count: state.count + 1 };

@@ -1,5 +1,5 @@
 import { delay, SagaIterator } from 'redux-saga';
-import { call, fork, put, take } from 'redux-saga/effects';
+import { all, call, fork, put, take } from 'redux-saga/effects';
 import { ActionTypes } from './demo.types';
 
 export function* increaseAsync(): SagaIterator {
@@ -18,8 +18,8 @@ export function* addAsync(): SagaIterator {
 }
 
 export function* demoRootSagas(): SagaIterator {
-  yield [
+  yield all([
     fork(increaseAsync),
     fork(addAsync)
-  ];
+  ]);
 }
