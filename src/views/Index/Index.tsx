@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../../models/demo/demo.actions';
 import { GlobalState } from '../../models/root';
-import './Index.css';
+import styles from './Index.css';
 
 interface Props
   extends ReturnType<typeof mapStateToProps>,
@@ -19,7 +19,7 @@ class Index extends React.Component<Props, State> {
   public render() {
     const { action, count } = this.props;
     return (
-      <div className="app">
+      <div className={styles.app}>
         {count}
         <button onClick={action.increase}>+</button>
         <button onClick={action.decrease}>-</button>

@@ -1,8 +1,9 @@
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { enviroment } from '../config';
 import { rootReducer, rootSaga } from './root';
+
+const enviroment = process.env.NODE_ENV;
 
 export function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
