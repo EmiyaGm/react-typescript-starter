@@ -18,8 +18,5 @@ export function* addAsync(): SagaIterator {
 }
 
 export function* demoRootSagas(): SagaIterator {
-  yield all([
-    fork(increaseAsync),
-    fork(addAsync)
-  ]);
+  yield all([fork(increaseAsync), fork(addAsync)]);
 }

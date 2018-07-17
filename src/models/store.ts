@@ -6,9 +6,8 @@ import { rootReducer, rootSaga } from './root';
 
 export function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = enviroment === 'development'
-    ? [sagaMiddleware, logger]
-    : [sagaMiddleware];
+  const middlewares =
+    enviroment === 'development' ? [sagaMiddleware, logger] : [sagaMiddleware];
 
   const store = createStore(rootReducer, applyMiddleware(...middlewares));
   sagaMiddleware.run(rootSaga);

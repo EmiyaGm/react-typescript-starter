@@ -7,7 +7,10 @@ const initState = {
 
 export type DemoState = Readonly<typeof initState>;
 
-export const demoReducer: Reducer<DemoState, DemoAction> = (state = initState, action) => {
+export const demoReducer: Reducer<DemoState, DemoAction> = (
+  state = initState,
+  action
+) => {
   switch (action.type) {
     case ActionTypes.INCREMENT:
       return { ...state, count: state.count + 1 };
@@ -18,4 +21,4 @@ export const demoReducer: Reducer<DemoState, DemoAction> = (state = initState, a
     default:
       return state;
   }
-}
+};

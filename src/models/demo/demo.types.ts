@@ -8,15 +8,15 @@ export enum ActionTypes {
 }
 
 export interface Increase {
-  type: ActionTypes.INCREMENT
+  type: ActionTypes.INCREMENT;
 }
 
 export interface Decrease {
-  type: ActionTypes.DECREMENT
+  type: ActionTypes.DECREMENT;
 }
 
 export interface Add {
-  type: ActionTypes.ADD,
+  type: ActionTypes.ADD;
   payload: number;
 }
 
