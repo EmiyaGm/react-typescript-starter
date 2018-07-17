@@ -1,5 +1,6 @@
 import { delay, SagaIterator } from 'redux-saga';
 import { all, call, fork, put, take } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { ActionTypes } from './demo.types';
 
 export function* increaseAsync(): SagaIterator {
@@ -12,8 +13,10 @@ export function* increaseAsync(): SagaIterator {
 
 export function* addAsync(): SagaIterator {
   while (true) {
-    const { payload } = yield take(ActionTypes.ADD_ASYNC);
-    yield put({ type: ActionTypes.ADD, payload });
+    yield take(ActionTypes.ADD_ASYNC);
+    yield put(push('/detail'));
+    // const { payload } = yield take(ActionTypes.ADD_ASYNC);
+    // yield put({ type: ActionTypes.ADD, payload });
   }
 }
 

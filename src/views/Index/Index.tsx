@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../../models/demo/demo.actions';
 import { GlobalState } from '../../models/root';
 import styles from './Index.css';
@@ -26,6 +27,7 @@ class Index extends React.Component<Props, State> {
         <button onClick={this.add}>3</button>
         <button onClick={action.increaseAsync}>async</button>
         <button onClick={action.addAsync.bind(this, 3)}>add async</button>
+        <Link to={'/detail'}>detail</Link>
       </div>
     );
   }

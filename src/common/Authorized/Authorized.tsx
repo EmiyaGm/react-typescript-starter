@@ -9,7 +9,6 @@ interface AuthorizedRouteProps extends RouteProps {
 
 export class Authorized extends React.Component<AuthorizedRouteProps> {
   public render() {
-    // const { authority, redirect } = this.props;
-    return <div>1</div>;
+    return null;
   }
 }
