@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { Link } from 'react-router-dom';
-import * as actions from '../../models/demo/demo.actions';
+
+import { add, substract } from '../../models/index/index.action';
 import { GlobalState } from '../../models/root';
 import styles from './Index.css';
 
@@ -14,35 +14,35 @@ interface State {
   count: number;
 }
 
-class Index extends React.Component<Props, State> {
+class Index extends React.PureComponent<Props, State> {
   public readonly state = { count: 1 };
 
+  public add = () => {
+    this.props.action.add(3);
+  };
+
+  public substract = () => {
+    this.props.action.substract(4);
+  };
+
   public render() {
-    const { action, count } = this.props;
+    const { count } = this.props;
     return (
       <div className={styles.app}>
         {count}
-        <button onClick={action.increase}>+</button>
-        <button onClick={action.decrease}>-</button>
-        <button onClick={this.add}>3</button>
-        <button onClick={action.increaseAsync}>async</button>
-        <button onClick={action.addAsync.bind(this, 3)}>add async</button>
-        <Link to={'/detail'}>detail</Link>
+        <button onClick={this.add}>add</button>
+        <button onClick={this.substract}>substract</button>
       </div>
     );
   }
-
-  private add = () => {
-    this.props.action.add(3);
-  };
 }
 
 const mapStateToProps = (state: GlobalState) => ({
-  count: state.demo.count
+  count: state.index.count
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  action: bindActionCreators(actions, dispatch)
+  action: bindActionCreators({ add, substract }, dispatch)
 });
 
 export default connect(

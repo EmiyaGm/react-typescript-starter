@@ -2,19 +2,25 @@ import { combineReducers } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { routerReducer, RouterState } from 'react-router-redux';
 import { all, fork } from 'redux-saga/effects';
-import { demoReducer, DemoState } from './demo/demo.reducer';
-import { demoRootSagas } from './demo/demo.sagas';
+
+import { IndexReducer, IndexState } from './index/index.reducer';
+import { watchIndexSagas } from './index/index.saga';
+
+import { LoginReducer, LoginState } from './login/login.reducer';
+import { watchLoginSagas } from './login/login.saga';
 
 export type GlobalState = {
-  demo: DemoState;
+  index: IndexState;
+  login: LoginState;
   router: RouterState;
 };
 
 export const rootReducer = combineReducers<GlobalState>({
-  demo: demoReducer,
+  index: IndexReducer,
+  login: LoginReducer,
   router: routerReducer
 });
 
 export function* rootSaga(): SagaIterator {
-  yield all([fork(demoRootSagas)]);
+  yield all([fork(watchIndexSagas), fork(watchLoginSagas)]);
 }

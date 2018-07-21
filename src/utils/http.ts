@@ -5,9 +5,10 @@ const http = axios.create();
 http.interceptors.request.use();
 
 http.interceptors.response.use(
-  res => res,
+  res => res.data,
   (err: AxiosError) => {
-    console.log(err);
+    console.log(err.code);
+    console.log(err.response);
     return Promise.reject(err);
   }
 );
