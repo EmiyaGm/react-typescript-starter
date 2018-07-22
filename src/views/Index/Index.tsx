@@ -17,14 +17,6 @@ interface State {
 class Index extends React.PureComponent<Props, State> {
   public readonly state = { count: 1 };
 
-  public add = () => {
-    this.props.action.add(3);
-  };
-
-  public substract = () => {
-    this.props.action.substract(4);
-  };
-
   public render() {
     const { count } = this.props;
     return (
@@ -35,15 +27,22 @@ class Index extends React.PureComponent<Props, State> {
       </div>
     );
   }
+
+  private add = () => {
+    this.props.add(3);
+  };
+
+  private substract = () => {
+    this.props.substract(4);
+  };
 }
 
 const mapStateToProps = (state: GlobalState) => ({
   count: state.index.count
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  action: bindActionCreators({ add, substract }, dispatch)
-});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ add, substract }, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -10,10 +10,6 @@ interface Props
     ReturnType<typeof mapDispatchToProps> {}
 
 class Login extends React.PureComponent<Props> {
-  public handleLogin = () => {
-    this.props.action.startLogin('13913913913', 'abcd1234');
-  };
-
   public render() {
     const { status, user } = this.props;
     return (
@@ -23,6 +19,10 @@ class Login extends React.PureComponent<Props> {
       </div>
     );
   }
+
+  private handleLogin = () => {
+    this.props.startLogin('13913913913', 'abcd1234');
+  };
 }
 
 const mapStateToProps = (state: GlobalState) => ({
@@ -30,9 +30,8 @@ const mapStateToProps = (state: GlobalState) => ({
   user: state.login.user
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  action: bindActionCreators({ startLogin }, dispatch)
-});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ startLogin }, dispatch);
 
 export default connect(
   mapStateToProps,
