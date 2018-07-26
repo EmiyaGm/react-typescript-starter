@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import { ScrollToTopHOC } from '../../common/hoc/ScrollToTop';
+
 import { add, substract } from '../../models/index/index.action';
 import { GlobalState } from '../../models/root';
 import styles from './Index.css';
@@ -47,4 +49,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Index);
+)(ScrollToTopHOC(Index));
