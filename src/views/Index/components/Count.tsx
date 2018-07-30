@@ -7,12 +7,10 @@ interface Props {
 const Counter: React.SFC<Props> = props => {
   const { count, children } = props;
   return (
-    <div>
-      <>
-        {count}
-        {children}
-      </>
-    </div>
+    <>
+      {count}
+      {children}
+    </>
   );
 };
 

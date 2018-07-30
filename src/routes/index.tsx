@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { History } from 'history';
 
-import ScrollToTopLayout from '../common/layouts/ScrollToTopLayout';
+import ScrollToTopLayout from '../common/layouts/ScrollToTopLayout/ScrollToTopLayout';
 
 import Index from '../views/Index/Index';
 import Detail from '../views/Detail/Detail';
@@ -16,14 +16,14 @@ interface Props {
 
 const Routes: React.SFC<Props> = ({ history }) => (
   <ConnectedRouter history={history}>
-    <Switch>
-      <ScrollToTopLayout>
+    <ScrollToTopLayout>
+      <Switch>
         <Redirect from={'/'} to={'/index'} exact />
         <Route path={'/index'} component={Index} />
         <Route path={'/detail'} component={Detail} />
         <Route path={'/login'} component={Login} />
-      </ScrollToTopLayout>
-    </Switch>
+      </Switch>
+    </ScrollToTopLayout>
   </ConnectedRouter>
 );
 

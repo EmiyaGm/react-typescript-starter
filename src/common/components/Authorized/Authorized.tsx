@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { RouteProps } from 'react-router-dom';
+import { RouteProps, Redirect } from 'react-router-dom';
 
 interface AuthorizedRouteProps extends RouteProps {
-  path: string;
   redirect: string;
-  authority: boolean | Promise<boolean>;
+  authority: boolean;
 }
 
 export class Authorized extends React.Component<AuthorizedRouteProps> {
   public render() {
-    return null;
+    const { component, redirect, authority } = this.props;
+    return authority ? (
+      component
+    ) : (
+      <Redirect from={this.props.path} to={redirect} />
+    );
   }
 }
