@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { startLogin } from '../../models/login/login.action';
+import { startLogin, logout } from '../../models/login/login.action';
 import styles from './Login.css';
 import { GlobalState } from '../../models/root';
 
@@ -16,6 +16,7 @@ class Login extends React.PureComponent<Props> {
       <div className={styles.login}>
         {status && user && user.mobile}
         <button onClick={this.handleLogin}>login</button>
+        <button onClick={this.props.logout}>logout</button>
       </div>
     );
   }
@@ -31,7 +32,7 @@ const mapStateToProps = (state: GlobalState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators({ startLogin }, dispatch);
+  bindActionCreators({ startLogin, logout }, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -16,7 +16,7 @@ export const LoginReducer: Reducer<Readonly<LoginState>, LoginActions> = (
     case ActionTypes.LOG_IN:
       return { ...state, status: true, user: action.payload };
     case ActionTypes.LOG_OUT:
-      return { ...state, status: false };
+      return { ...state, status: false, user: undefined };
     default:
       return state;
   }

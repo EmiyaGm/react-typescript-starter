@@ -1,13 +1,16 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
+const os = require('os');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HappyPack = require('happypack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
-// const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -53,6 +56,7 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  mode: 'production',
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -168,6 +172,7 @@ module.exports = {
                   configFile: paths.appTsProdConfig
                 },
               },
+              // 'happypack/loader?id=tsx'
             ],
           },
           // The notation here is somewhat confusing.
@@ -273,6 +278,27 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: cssFilename,
     }),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(paths.appBuild, 'vendor', '*.dll.js'),
+      includeSourcemap: false,
+    }),
+    new CleanWebpackPlugin(paths.appBuild, {
+      exclude: ['vendor'],
+      allowExternal: true
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(paths.appBuild, 'vendor', 'vendor-manifest.json')
+    }),
+    // new HappyPack({
+    //   id: 'tsx',
+    //   threadPool: HappyPack.ThreadPool({ size: 2 }),
+    //   use: [
+    //     {
+    //       path: 'ts-loader',
+    //       query: { happyPackMode: true, configFile: paths.appTsProdConfig }
+    //     }
+    //   ]
+    // }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
