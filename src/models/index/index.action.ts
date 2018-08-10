@@ -1,24 +1,23 @@
-import {
-  ActionTypes,
-  TaskNames,
-  addCountAction,
-  substractCountAction,
-  addTask,
-  substractTask
-} from './index.types';
+import { ActionTypes, TaskNames } from './index.types';
 
-export function addCount(count: number): addCountAction {
+type Action<T, P = any> = { type: T; payload: P };
+
+export function addCount(count: number): Action<ActionTypes.ADD_COUNT, number> {
   return { type: ActionTypes.ADD_COUNT, payload: count };
 }
 
-export function substractCount(count: number): substractCountAction {
-  return { type: ActionTypes.SUBSTRACT_COUNT, count };
+export function substractCount(
+  count: number
+): Action<ActionTypes.SUBSTRACT_COUNT, number> {
+  return { type: ActionTypes.SUBSTRACT_COUNT, payload: count };
 }
 
-export function add(count: number): addTask {
+export function add(count: number): Action<TaskNames.ADD_TASK, number> {
   return { type: TaskNames.ADD_TASK, payload: count };
 }
 
-export function substract(count: number): substractTask {
+export function substract(
+  count: number
+): Action<TaskNames.SUBSTRACT_TASK, number> {
   return { type: TaskNames.SUBSTRACT_TASK, payload: count };
 }

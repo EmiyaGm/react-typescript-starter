@@ -15,7 +15,7 @@ export const IndexReducer: Reducer<Readonly<IndexState>, IndexActions> = (
     case ActionTypes.ADD_COUNT:
       return { ...state, count: state.count + action.payload };
     case ActionTypes.SUBSTRACT_COUNT:
-      return { ...state, count: state.count + action.count };
+      return { ...state, count: state.count + action.payload };
     default:
       return state;
   }

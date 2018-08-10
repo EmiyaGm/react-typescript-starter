@@ -13,7 +13,8 @@ module.exports = {
       'redux',
       'react-redux',
       'redux-saga',
-      'redux-logger'
+      'redux-logger',
+      'antd'
     ]
   },
   output: {
@@ -25,6 +26,6 @@ module.exports = {
     new webpack.DllPlugin({
       path: path.resolve(paths.appBuild, 'vendor', '[name]-manifest.json'),
       name: '[name]'
-    }),
+    })
   ]
 };

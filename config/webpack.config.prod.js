@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HappyPack = require('happypack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -17,7 +16,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const AddTimestampPlugin = require('./plugins/add-timestamp-plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -169,10 +169,18 @@ module.exports = {
                 options: {
                   // disable type checker - we will use it in fork plugin
                   transpileOnly: true,
-                  configFile: paths.appTsProdConfig
+                  configFile: paths.appTsProdConfig,
+                  getCustomTransformers: () => ({
+                    before: [
+                      tsImportPluginFactory({
+                        libraryName: 'antd',
+                        libraryDirectory: 'lib',
+                        style: 'css'
+                      })
+                    ]
+                  }),
                 },
               },
-              // 'happypack/loader?id=tsx'
             ],
           },
           // The notation here is somewhat confusing.
@@ -289,16 +297,7 @@ module.exports = {
     new webpack.DllReferencePlugin({
       manifest: path.resolve(paths.appBuild, 'vendor', 'vendor-manifest.json')
     }),
-    // new HappyPack({
-    //   id: 'tsx',
-    //   threadPool: HappyPack.ThreadPool({ size: 2 }),
-    //   use: [
-    //     {
-    //       path: 'ts-loader',
-    //       query: { happyPackMode: true, configFile: paths.appTsProdConfig }
-    //     }
-    //   ]
-    // }),
+    new AddTimestampPlugin(),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.

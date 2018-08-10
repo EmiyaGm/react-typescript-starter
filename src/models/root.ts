@@ -6,21 +6,20 @@ import { all, fork } from 'redux-saga/effects';
 import { IndexReducer, IndexState } from './index/index.reducer';
 import { watchIndexSagas } from './index/index.saga';
 
-import { LoginReducer, LoginState } from './login/login.reducer';
-import { watchLoginSagas } from './login/login.saga';
+import { TodoReducer, TodoState } from './todo/todo.reducer';
 
 export type GlobalState = {
   index: IndexState;
-  login: LoginState;
+  todo: TodoState;
   router: RouterState;
 };
 
 export const rootReducer = combineReducers<GlobalState>({
   index: IndexReducer,
-  login: LoginReducer,
-  router: routerReducer
+  router: routerReducer,
+  todo: TodoReducer
 });
 
 export function* rootSaga(): SagaIterator {
-  yield all([fork(watchIndexSagas), fork(watchLoginSagas)]);
+  yield all([fork(watchIndexSagas)]);
 }

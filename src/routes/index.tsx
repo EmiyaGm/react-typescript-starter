@@ -8,7 +8,8 @@ import ScrollToTopLayout from '../common/layouts/ScrollToTopLayout/ScrollToTopLa
 
 import Index from '../views/Index/Index';
 import Detail from '../views/Detail/Detail';
-import Login from '../views/Login/Login';
+import Footer from '../views/Footer/Footer';
+import Todo from '../views/Todo/Todo';
 
 interface Props {
   history: History;
@@ -21,8 +22,9 @@ const Routes: React.SFC<Props> = ({ history }) => (
         <Redirect from={'/'} to={'/index'} exact />
         <Route path={'/index'} component={Index} />
         <Route path={'/detail'} component={Detail} />
-        <Route path={'/login'} component={Login} />
+        <Route path={'/todo'} component={Todo} />
       </Switch>
+      <Footer />
     </ScrollToTopLayout>
   </ConnectedRouter>
 );
